@@ -1,0 +1,17 @@
+{
+    "labels": {
+        "date": "Date",
+        "message": "Message",
+        "name": "Name",
+        "phone": "Phone",
+        "subject": "Subject",
+        "email": "Email",
+        "category": "Category",
+        "actions": "Actions"
+    },
+    "buttons": {
+        "view": {
+            "title": "View"
+        }        
+    }
+}

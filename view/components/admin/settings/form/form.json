@@ -1,0 +1,22 @@
+{
+    "title": "Form",
+    "buttons": {
+        "save": {
+            "content": "Save Message"
+        },
+        "default": {
+            "content": "Default"
+        }
+    },
+    "labels": {
+        "name": "Name Field",
+        "email": "Email Field",
+        "phone": "Phone Field",
+        "subject": "Subject Field",
+        "captcha": "Captcha",
+        "required": "Required",
+        "protect": "Spam and abuse protection with captcha",
+        "show": "Show",
+        "send": "Send message"
+    }
+}

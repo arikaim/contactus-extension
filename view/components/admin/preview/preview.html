@@ -1,0 +1,24 @@
+{% set routes = createModel('Routes').getExtensionRoutes('contactus') %}
+<div class="ui stackable grid">
+    <div class="ui five wide computer sixteen wide tablet column segment">
+        <div class="ui block header">
+                <i class="file outline icon blue"></i>
+            <h4 class="content">{{ labels.form }}</h4>
+        </div>
+        <div class="ui hidden divider"></div>     
+        {{ component('contactus::form') }}
+        <div class="ui hidden divider"></div>       
+        <div class="ui divider"></div>       
+        <div class="ui block header">
+            <i class="file alternate outline icon blue"></i>
+            <h4 class="content">{{ labels.page }}</h4>
+        </div>
+        <div class="ui list">          
+        {% for route in routes %}
+            <li class="item">
+                {{ component('components:buttons.page-url',{ url: route.pattern, class: 'fluid' }) }}                
+            </li>
+        {% endfor %}
+        </div>      
+    </div>
+</div>

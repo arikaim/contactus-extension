@@ -1,0 +1,33 @@
+{% set message = createModel('ContactUs','contactus').findById(uuid) %}
+<div class="ui segment">  
+    {% if message.subject is not empty %}  
+        <div class="ui small dividing header">              
+            {{ message.subject }}               
+        </div>  
+    {% endif %}          
+    <div class="content">       
+        <p class="ml-5 text-xl text-gray-700">{{ message.message|decode }}</p>
+    </div>               
+</div>
+<div class="ui form pt-4 pb-4">
+    {% if message.name is not empty %}
+        <div class="field">
+            <label>{{ labels.name }}</label>
+            <p class="ml-5 text-xl text-gray-700">{{ message.name }}</p>
+        </div>  
+    {% endif %}  
+    {% if message.email is not empty %}
+        <div class="field">
+            <label>{{ labels.email }}</label>
+            <p class="ml-5 text-xl text-gray-700">
+                <a href="mailto:{{ message.email }}">{{ message.email }}</a>
+            </p>
+        </div>  
+    {% endif %}  
+    {% if message.phone is not empty %}
+        <div class="field">
+            <label>{{ labels.phone }}</label>
+            <p class="ml-5 text-xl text-gray-700">{{ message.phone }}</p>
+        </div> 
+    {% endif %}  
+</div>    

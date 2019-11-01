@@ -1,0 +1,11 @@
+{
+    "messages": {
+        "empty": "No messages." 
+    },
+    "buttons": {
+        "add": {      
+            "content": "Create",          
+            "title": "Create New Category"
+        }  
+    }
+}

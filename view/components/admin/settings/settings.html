@@ -1,0 +1,15 @@
+<div class="ui stackable grid">
+    <div class="ui column">
+        <div class="ui tabular fluid vertical menu" id="settings_menu">
+            <div class="item active settings-tab-item" component="contactus::admin.settings.form">
+                {{ menu.form }}
+            </div>
+            <div class="item settings-tab-item" component="contactus::admin.settings.notifications">
+                {{ menu.notifications }}
+            </div>
+        </div>
+    </div>    
+    <div class="ui five wide computer fifteen wide tablet column segment p-0" id="settings_tab">          
+        {{ component('contactus::admin.settings.form') }}
+    </div>
+</div>

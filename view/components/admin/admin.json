@@ -1,0 +1,26 @@
+{
+    "labels": {
+        "view": {
+            "content": "View",
+            "title": "View"
+        }, 
+        "preview": {
+            "content": "Preview",
+            "title": "Preview"
+        },                
+        "settings": {
+            "content": "Settings",
+            "title": "Contact Us form Settings"
+        }
+    },
+    "messages": {
+        "remove": {
+            "title": "Confirm Remove",
+            "content": "Confirm remove message."
+        },
+        "remove-selected": {
+            "title": "Confirm Remove",
+            "content": "Confirm remove selected messages."
+        }
+    }    
+}

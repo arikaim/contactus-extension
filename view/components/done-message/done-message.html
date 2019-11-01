@@ -1,0 +1,7 @@
+{% set send_message = service('options').get('contactus.send.message',message) %}
+<div class="ui attached large message success">    
+    <h5 class="header">
+        <i class="icon check olive"></i>
+        {{ send_message }}
+    </h5>
+</div>

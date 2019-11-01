@@ -1,0 +1,42 @@
+
+{% set settings = service('options').get('contactus.form.settings') %}
+<form class="ui equal width form" id="contact_us_form">    
+    {% if settings.subject.show == 'true' %}
+    <div class="{{ settings.subject.required|ifthen('true','required') }} field">
+        <label>{{ subject.label }}</label>
+        <input type="text" name="subject" id="subject" {{ subject.placeholder|attr('placeholder') }} value="">  
+    </div>
+    {% endif %}   
+    <div class="required field">
+        <label>{{ message.label }}</label>
+        <textarea rows="4" cols="4" name="message" id="message" {{ message.placeholder|attr('placeholder') }}></textarea>
+    </div>                 
+    {% if settings.name.show == 'true' %}   
+    <div class="{{ settings.name.required|ifthen('true','required') }} field">
+        <label>{{ name.label }}</label>
+        <input type="text" name="name" id="name" {{ name.placeholder|attr('placeholder') }} value="">  
+    </div> 
+    {% endif %}
+    <div class="two fields">     
+        {% if settings.email.show == 'true' %}      
+        <div class="{{ settings.email.required|ifthen('true','required') }} field">
+            <label>{{ email.label }}</label>
+            <input type="text" name="email" id="email" {{ email.placeholder|attr('placeholder') }} value="">
+        </div>
+        {% endif %}
+        {% if settings.phone.show == 'true' %} 
+        <div class="{{ settings.phone.required|ifthen('true','required') }} field">
+            <label>{{ phone.label }}</label>
+            <input type="text" name="phone" id="phone" {{ phone.placeholder|attr('placeholder') }} value="">
+        </div>
+        {% endif %}
+    </div>   
+    <div class="ui mt-3">&nbsp;</div>
+    {% if settings.captcha.show == 'true' %}  
+        {{ component('captcha::code') }}
+    {% endif %}   
+    <div class="ui horizontal divider mt-2"></div>
+    <button class="ui button green submit-button">{{ buttons.save.content }}</button>
+    <div class="ui horizontal divider"></div>
+    <div class="ui error message errors hidden mt-2"></div>
+</form>

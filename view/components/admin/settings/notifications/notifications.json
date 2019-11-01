@@ -1,0 +1,12 @@
+{   
+    "labels": {
+        "notifications": "Notifications",
+        "email": "Email",
+        "fields": {
+            "email": "Receive notification by email"
+        }
+    },
+    "buttons": {
+        "save": "Save"
+    }
+}

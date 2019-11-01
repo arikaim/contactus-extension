@@ -1,0 +1,26 @@
+{% set send_email_notifications = service('options').get('contactus.notifications.email.send') %}
+{% set email = service('options').get('contactus.notifications.email') %}
+<div class="ui block header mt-4">
+    <i class="icon file outline mini grey"></i>
+    <h4 class="content">{{ labels.notifications }}</h4>
+</div>
+<div class"ui">            
+    <form class="ui equal width form" id="notifications_settings_form">  
+        <div class="ui segment">
+            <div class="field">                     
+                <div class="ui checkbox" id="send_email_notifications">
+                    <input type="checkbox" name="send_email_notifications" id="send_email_notifications_checkbox" tabindex="0" {{ send_email_notifications|ifthen(true,'checked') }}>
+                    <label>{{ labels.fields.email }}</label>
+                </div>
+            </div>
+            <div class="field {{ send_email_notifications|ifthen(false,'disabled') }}" id="email_field">
+                <label>{{ labels.email }}</label>                           
+                <input type="text" name="notification_email" id="notification_email" tabindex="0" value="{{ email }}">                             
+            </div>
+        </div>
+        <div class="ui horizontal divider"></div>
+        <button class="ui button green submit-button">{{ buttons.save }}</button>
+        <div class="ui horizontal divider"></div>
+        <div class="ui error message errors hidden"></div>
+    </form>
+</div>
