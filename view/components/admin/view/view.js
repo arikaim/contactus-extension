@@ -11,7 +11,8 @@ function ContactUsView() {
     this.init = function() {      
         paginator.init('contactus_rows',"contactus::admin.view.rows",'contactus');         
         
-        $('.actions').dropdown({});        
+        $('.actions').dropdown({});       
+         
         search.init({ 
             id: 'contactus_rows',
             component: 'contactus::admin.view.rows'
