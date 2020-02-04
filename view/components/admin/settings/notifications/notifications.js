@@ -12,11 +12,7 @@ $(document).ready(function() {
     contactUsSettings.addNotificationFormRules();
 
     arikaim.ui.form.onSubmit("#notifications_settings_form",function() {  
-        var notification_email = $('#notification_email').val();
-        return options.save('contactus.notifications.email',notification_email);
-    }).done(function(data) {  
-      
-    }).fail(function(error) {
-       
+        var notificationEmail = $('#notification_email').val();
+        return options.save('contactus.notifications.email',notificationEmail);
     });
 });

@@ -1,12 +1,8 @@
 /**
  *  Arikaim
- *  
  *  @copyright  Copyright (c) Konstantin Atanasov <info@arikaim.com>
  *  @license    http://www.arikaim.com/license
  *  http://www.arikaim.com
- * 
- *  Extension: ContactUs
- *  Component: contactus:form
  */
 
 function ContactUs() {
@@ -59,7 +55,7 @@ function ContactUs() {
         });
         
         arikaim.ui.form.onSubmit("#contact_us_form",function() {  
-            return arikaim.post('/api/contact-us/','#contact_us_form');          
+            return arikaim.post('/api/contact-us','#contact_us_form');          
         },function(data) {  
             self.showDoneMessage('contact_us_form');
             callFunction(onSuccess,data);
@@ -68,22 +64,22 @@ function ContactUs() {
         });
     };
 
-    this.showDoneMessage = function(form_id) {       
+    this.showDoneMessage = function(formId) {       
         arikaim.page.loadContent({
-            id: form_id,
+            id: formId,
             component: 'contactus::done-message'
         });
     };
 
-    this.initValidation = function(form_id, fields) {
-        form_id = getDefaultValue(form_id,'#contact_us_form');
-        arikaim.ui.form.addRules(form_id,{
+    this.initValidation = function(formId, fields) {
+        formId = getDefaultValue(formId,'#contact_us_form');
+        arikaim.ui.form.addRules(formId,{
             inline: false,
             fields: fields
         });
     };
 
-    this.loadSettings = function(onSuccess,onError) {
+    this.loadSettings = function(onSuccess, onError) {
         return arikaim.get('/api/contact-us/config',onSuccess,onError);      
     };
 }

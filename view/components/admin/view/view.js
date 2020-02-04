@@ -1,20 +1,21 @@
 /**
- *  Arikaim
- *  
+ *  Arikaim 
  *  @copyright  Copyright (c) Konstantin Atanasov <info@arikaim.com>
  *  @license    http://www.arikaim.com/license
  *  http://www.arikaim.com
- * 
- *  Extension: ContactUs
- *  Component: contactus:admin.view
 */
 
 function ContactUsView() {
     var self = this;
 
     this.init = function() {      
+        paginator.init('contactus_rows',"contactus::admin.view.rows",'contactus');         
+        
         $('.actions').dropdown({});        
-        search.init({ id: 'contactus_rows', component: 'contactus::admin.view.rows' },'contactus');
+        search.init({ 
+            id: 'contactus_rows',
+            component: 'contactus::admin.view.rows'
+        },'contactus');
 
         arikaim.ui.button('#delete_selected',function(element) {
             var component = arikaim.component.get('contactus::admin');
@@ -59,7 +60,7 @@ function ContactUsView() {
                 description: component.getProperty('messages.remove.content')
             },function() {
                 contactUsAdmin.delete(uuid,function(result) {
-                    $('#' + uuid).remove();
+                    arikaim.ui.table.removeRow('#' + uuid);
                 });
             });
         });

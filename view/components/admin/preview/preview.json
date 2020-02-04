@@ -1,6 +1,10 @@
 {
     "labels": {
         "form": "Form",
-        "page": "Pages"
+        "page": "Page"
+    },
+    "title": {
+        "content": "Preview",
+        "icon": "file outline"
     }
 }

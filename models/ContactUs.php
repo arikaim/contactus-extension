@@ -3,7 +3,7 @@
  * Arikaim
  *
  * @link        http://www.arikaim.com
- * @copyright   Copyright (c) 2016-2018 Konstantin Atanasov <info@arikaim.com>
+ * @copyright   Copyright (c)  Konstantin Atanasov <info@arikaim.com>
  * @license     http://www.arikaim.com/license
  * 
 */
@@ -11,22 +11,32 @@ namespace Arikaim\Extensions\ContactUs\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Arikaim\Core\Models\Users;
-
-use Arikaim\Core\Traits\Db\Uuid;
-use Arikaim\Core\Traits\Db\DateCreated;
-use Arikaim\Core\Traits\Db\Find;
-use Arikaim\Core\Traits\Db\Status;
+use Arikaim\Core\Db\Traits\Uuid;
+use Arikaim\Core\Db\Traits\DateCreated;
+use Arikaim\Core\Db\Traits\Find;
+use Arikaim\Core\Db\Traits\Status;
+use Arikaim\Core\Db\Traits\UserRelation;
 
 class ContactUs extends Model  
 {
     use Uuid,
         Find,
         Status,
+        UserRelation,
         DateCreated;
     
+    /**
+     * Db table name
+     *
+     * @var string
+     */
     protected $table = "contact_us";
 
+    /**
+     * Fillable attributes
+     *
+     * @var array
+     */
     protected $fillable = [    
         'uuid',
         'status',  
@@ -41,19 +51,36 @@ class ContactUs extends Model
         'date_created',
         'user_id'
     ];
-   
+    
+    /**
+     * Disable Timestamps
+     *
+     * @var boolean
+     */
     public $timestamps = false;
 
-    public function user()
-    {
-        return $this->belongsTo(Users::class);
-    }
-
+    /**
+     * Category relation
+     *
+     * @return Relation
+     */
     public function category()
     {
-        return $this->belongsTo(Arikaim\Extensions\Category\Models\Category::class);
+        $class = 'Arikaim\\Extensions\\Category\\Models\\Category';
+        if (class_exists($class) == true) {
+            return $this->belongsTo($class);
+        }
+        
+        return null;
     }
 
+    /**
+     * Set readed
+     *
+     * @param string|integer $id
+     * @param integer $read
+     * @return boolean
+     */
     public function setRead($id, $read = 1)
     {
         $model = $this->findById($id);
@@ -61,6 +88,7 @@ class ContactUs extends Model
             return false;
         }
         $model->read = $read;
+
         return $model->save();
     }
 }

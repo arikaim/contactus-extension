@@ -1,4 +1,5 @@
 $(document).ready(function() {  
-    contactUsView.initRows();
-    paginator.init('contactus_rows',"contactus::admin.view.rows",'contactus');         
+    safeCall('contactUsView',function(obj) {
+        obj.initRows();
+    },true);    
 }); 

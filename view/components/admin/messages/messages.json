@@ -1,0 +1,9 @@
+{
+    "readed": "Message status set to readed",
+    "save": "Message saved",
+    "errors": {
+        "readed": "Can't set status",
+        "save": "Error",
+        "captcha": "Captcha verification failed."
+    }
+}

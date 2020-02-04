@@ -1,86 +1,27 @@
-{% set message = createModel('ContactUs','contactus').findById(uuid) %}
+{# set message = createModel('ContactUs','contactus').findById(uuid) #}
 
-{{ component('components:mail.start',{ email_component_name: 'contactus::admin.email' }) }}
+<b>{{ labels.title }}</b>
+<br>
+<br>
+{% if message.subject is not empty %}
+    <b>{{ labels.subject }}</b>: {{ message.subject }}<br>
+{% endif %}
 
-{% component 'components:mail.wrapper' %}
-    {% set class='header float-center' %}
-    {% component 'components:mail.container' %}
-        {% component 'components:mail.rows' %}      
-            {% set class='collapse' %}
-            {% component 'components:mail.column' %}
-                {% set class = 'small-12 large-12' %}
-                <h4>{{ title }}</h4>
-            {% endcomponent %}
-        {% endcomponent %}
+{% if message.message is not empty %}
+    <b>{{ labels.message }}:</b>
+    <p>{{ message.message }}</p>    
+    <br>    
+{% endif %}
 
-        {% component 'components:mail.rows' %}
-            {% if message.subject is not empty %}
-                {% component 'components:mail.column' %}
-                    {% set class = 'small-1 large-1' %}
-                    {{ labels.subject }}
-                {% endcomponent %}
-                {% component 'components:mail.column' %}
-                    {% set class = 'small-11 large-11' %}
-                    <p>{{ message.subject }}</p>
-                {% endcomponent %}
-            {% endif %}
-        {% endcomponent %}
+{% if message.name is not empty %}
+    <b>{{ labels.name }}</b>: {{ message.name }}<br>
+{% endif %}
 
-        
-        {% component 'components:mail.rows' %}
-            {% component 'components:mail.column' %}
-                {% set class = 'small-1 large-1' %}
-                {{ labels.message }}
-            {% endcomponent %}
-            {% component 'components:mail.column' %}
-                {% set class = 'small-1 large-11' %}
-                {% component 'components:mail.callout' %}
-                    {{ message.message }}
-                {% endcomponent %}
-            {% endcomponent %}
-        {% endcomponent %}
+{% if message.email is not empty %}
+    <b>{{ labels.email }}</b>: {{ message.email }}<br>
+{% endif %}
 
-
-        {% component 'components:mail.rows' %}
-            {% if message.name is not empty %}
-                {% component 'components:mail.column' %}
-                    {% set class = 'small-1 large-1' %}
-                    {{ labels.name }}
-                {% endcomponent %}
-                {% component 'components:mail.column' %}
-                    {% set class = 'small-11 large-11' %}
-                    <p>{{ message.name }}</p>
-                {% endcomponent %}
-            {% endif %}
-        {% endcomponent %}
-
-        {% component 'components:mail.rows' %}
-            {% if message.phone is not empty %}
-                {% component 'components:mail.column' %}
-                    {% set class = 'small-1 large-1' %}
-                    {{ labels.phone }}
-                {% endcomponent %}
-                {% component 'components:mail.column' %}
-                    {% set class = 'small-11 large-11' %}
-                    <p>{{ message.phone }}</p>
-                {% endcomponent %}
-            {% endif %}
-        {% endcomponent %}
-
-        {% component 'components:mail.rows' %}
-            {% if message.email is not empty %}
-                {% component 'components:mail.column' %}
-                    {% set class = 'small-1 large-1' %}
-                    {{ labels.email }}
-                {% endcomponent %}
-                {% component 'components:mail.column' %}
-                    {% set class = 'small-11 large-11' %}
-                    <p>{{ message.email }}</p>
-                {% endcomponent %}
-            {% endif %}
-        {% endcomponent %}
-
-    {% endcomponent %}
-{% endcomponent %}
-
-{{ component('components:mail.end') }}
+{% if message.phone is not empty %}
+    <b>{{ labels.phone }}</b>: {{ message.phone }}<br>
+{% endif %}
+<br>

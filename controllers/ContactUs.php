@@ -3,7 +3,7 @@
  * Arikaim
  *
  * @link        http://www.arikaim.com
- * @copyright   Copyright (c) 2016-2018 Konstantin Atanasov <info@arikaim.com>
+ * @copyright   Copyright (c)  Konstantin Atanasov <info@arikaim.com>
  * @license     http://www.arikaim.com/license
  * 
 */
@@ -11,53 +11,66 @@ namespace Arikaim\Extensions\ContactUs\Controllers;
 
 use Arikaim\Core\Db\Model;
 use Arikaim\Core\Controllers\ApiController;
-use Arikaim\Core\Arikaim;
-use Arikaim\Core\Mail\Mail;
+
+use Arikaim\Core\Controllers\Traits\Captcha;
 
 /**
  * ContactUs api controler
 */
 class ContactUs extends ApiController
 {
+    use Captcha;
+    
     /**
-     * Save contact us message
+     * Init controller
      *
-     * @param object $request
-     * @param object $response
-     * @param object $data
-     * @return object
-    */
+     * @return void
+     */
+    public function init()
+    {
+        $this->loadMessages('contactus::admin.messages');
+    }
+    
+    /**
+     * Save message
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param Validator $data
+     * @return Psr\Http\Message\ResponseInterface
+    */ 
     public function addController($request, $response, $data) 
     {               
-        $settings = Arikaim::options()->get('contactus.form.settings');
+        $settings = $this->get('options')->get('contactus.form.settings');
     
         if ($settings['captcha']['show'] == true) {           
-            $recaptcha = Arikaim::module()->create('recaptcha');
-            $result = $recaptcha->verify($data['g-recaptcha-response'],$request->getAttribute('client_ip'));
-            if ($result == false) {
-                $this->withError('Captcha verification failed.')->getResponse();              
+            if ($this->verifyCaptcha($request,$data) == false) {            
+                return;      
             } 
         }
        
         $this->onDataValid(function($data) { 
-            $model = Model::ContactUs('contactus')->create($data->toArray());
-              
-            if (is_object($model) == false) {
-                $this->setError('ERROR_SAVE_DATA');
-            } else {
-                $result = Arikaim::event()->trigger('contactus.add',$data->toArray());                     
-                $send_email = Arikaim::options()->get('contactus.notifications.email.send');
+            $model = Model::ContactUs('contactus');
+            $model->authId = $this->get('access')->getId();
+            
+            $message = $model->create($data->toArray());
 
-                if ($send_email == true) {       
-                    $notifications_email = Arikaim::options()->get('contactus.notifications.email');                  
+            $this->setResponse(is_object($message),function() use($message,$data) {                      
+                $this->get('event')->dispatch('contactus.add',$data->toArray());                     
+                $sendEmail = $this->get('options')->get('contactus.notifications.email.send');
+
+                if ($sendEmail == true) {       
+                    $notificationsEmail = $this->get('options')->get('contactus.notifications.email');                  
                     // send mail 
-                    $result = Mail::create()
-                        ->to($notifications_email) 
-                        ->loadComponent('contactus::admin.email',['uuid' => $model->uuid])
+                    $this->get('mailer')->create()
+                        ->to($notificationsEmail) 
+                        ->loadComponent('contactus::admin.email',['message' => $message->toArray()])
                         ->send();                        
                 }
-                $this->setResult(['message' => 'Contact Us message saved','id' => $model->id,'uuid' => $model->uuid]);   
-            }
+                $this
+                    ->message('save')
+                    ->field('uuid',$message->uuid);     
+            },'errors.save'); 
         });
         $data
             ->addRule('text:min=2','message')
@@ -65,29 +78,17 @@ class ContactUs extends ApiController
     }
 
     /**
-     * Read contact us config
+     * Read form config
      *
-     * @param object $request
-     * @param object $response
-     * @param object $data
-     * @return object
-    */
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param Validator $data
+     * @return Psr\Http\Message\ResponseInterface
+    */ 
     public function getConfig($request, $response, $data)
     {
-        $options = Arikaim::options()->read('contactus.form.settings');
+        $options = $this->get('options')->get('contactus.form.settings');
+        
         return $this->setResult($options)->getResponse();      
-    }
-
-    /**
-     * Read contact us config
-     *
-     * @param object $request
-     * @param object $response
-     * @param object $data
-     * @return object
-    */
-    public function contactUsPage($request, $response, $data)
-    {
-        echo "cu page";
     }
 }

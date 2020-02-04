@@ -1,5 +1,8 @@
 {
-    "title": "Form",
+    "title": {
+        "content": "Form",
+        "icon": "table"
+    },
     "buttons": {
         "save": {
             "content": "Save Message"

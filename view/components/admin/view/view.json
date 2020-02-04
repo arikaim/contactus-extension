@@ -4,6 +4,7 @@
         "message": "Message",
         "name": "Name",
         "phone": "Phone",
+        "page": "Page",
         "subject": "Subject",
         "email": "Email",
         "category": "Category",

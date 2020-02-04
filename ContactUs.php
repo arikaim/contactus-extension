@@ -3,14 +3,13 @@
  * Arikaim
  *
  * @link        http://www.arikaim.com
- * @copyright   Copyright (c) 2016-2018 Konstantin Atanasov <info@arikaim.com>
+ * @copyright   Copyright (c)  Konstantin Atanasov <info@arikaim.com>
  * @license     http://www.arikaim.com/license
  * 
 */
 namespace Arikaim\Extensions\ContactUs;
 
-use Arikaim\Core\Packages\Extension\Extension;
-use Arikaim\Core\Arikaim;
+use Arikaim\Core\Extension\Extension;
 
 /**
  * ContactUs extension
@@ -20,20 +19,19 @@ class ContactUs extends Extension
     /**
      * Install extension routes, events, jobs
      *
-     * @return boolean
+     * @return void
     */
     public function install()
     {
         // Contact us page
-        $this->addPageRoute('/contact-us/','contact-us',null,'ContactUsPages','contactUs');  
+        $this->addShowPageRoute('/contact-us','contactus>contact-us');
         // Save message
-        $this->addApiRoute('POST','/api/contact-us/','ContactUs','add');
-        $this->addApiRoute('GET','/api/contact-us/config','ContactUs','getConfig');
-
+        $this->addApiRoute('GET','/api/contact-us/config','ContactUs','getConfig');      
+        $this->addApiRoute('POST','/api/contact-us','ContactUs','add');
         // Control Panel
-        $this->addApiRoute('PUT','/api/contact-us/readed/{uuid}','ControlPanelContactUs','setReaded','session'); 
-        $this->addApiRoute('PUT','/api/contact-us/delete/selected','ControlPanelContactUs','deleteSelected','session'); 
-        $this->addApiRoute('DELETE','/api/contact-us/{uuid}','ControlPanelContactUs','delete','session');   
+        $this->addApiRoute('PUT','/api/contact-us/admin/readed/{uuid}','ControlPanelContactUs','setReaded','session'); 
+        $this->addApiRoute('PUT','/api/contact-us/admin/delete/selected','ControlPanelContactUs','deleteSelected','session'); 
+        $this->addApiRoute('DELETE','/api/contact-us/admin/{uuid}','ControlPanelContactUs','delete','session');   
 
         // Register events
         $this->registerEvent('contactus.create','Trigger after new contact us message is created');
@@ -51,8 +49,15 @@ class ContactUs extends Extension
         $this->createOption('contactus.form.settings',$form_settings);
         $this->createOption('contactus.notifications.email','');
         $this->createOption('contactus.notifications.email.send',true);
-        $this->createOption('contactus.send.message','Your message has been sent.'); 
-        
-        return true;
+        $this->createOption('contactus.send.message','Your message has been sent.');  
     }   
+
+    /**
+     * Uninstall extension
+     *
+     * @return void
+     */
+    public function unInstall()
+    {         
+    }
 }

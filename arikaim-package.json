@@ -1,20 +1,20 @@
 {
     "title": "Contact Us",
-    "icon": "address book outline",
+    "name": "contactus",
     "class": "ContactUs",
+    "package-type": "extension",
     "type": "user",
     "description": "Contact Form.",
-    "short_description": "Contact Form.",
+    "short-description": "Contact Form.",
     "private-repository": true,
     "repository": "https://github.com/arikaim/contactus-extension.git",
-    "version": "1.0",
+    "version": "1.0.1",
     "position": "3",
-    "admin_menu": {        
+    "admin-menu": {        
         "title": "Contact Us",
         "icon": "address book outline",
-        "page_title": "Contact Us",
-        "page_icon": "address book outline",
-        "sub_title": "",
+        "page-title": "Contact Us",
+        "page-icon": "address book outline",       
         "component": "contactus::admin"
     }
 }

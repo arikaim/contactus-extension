@@ -1,6 +1,6 @@
 {
-    "title": "Contact us message",
     "labels": {
+        "title": "Contact us message",
         "name": "Name",
         "email": "Email",
         "phone": "Phone",

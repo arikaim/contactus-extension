@@ -3,7 +3,7 @@
  * Arikaim
  *
  * @link        http://www.arikaim.com
- * @copyright   Copyright (c) 2016-2018 Konstantin Atanasov <info@arikaim.com>
+ * @copyright   Copyright (c)  Konstantin Atanasov <info@arikaim.com>
  * @license     http://www.arikaim.com/license
  * 
 */
@@ -21,7 +21,7 @@ class ContactUsSchema extends Schema
      *
      * @var string
      */
-    protected $table_name = "contact_us";
+    protected $tableName = "contact_us";
 
     /**
      * Create table

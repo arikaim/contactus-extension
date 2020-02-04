@@ -1,5 +1,5 @@
 
-{% set settings = service('options').get('contactus.form.settings') %}
+{% set settings = getOption('contactus.form.settings') %}
 <form class="ui equal width form" id="contact_us_form">    
     {% if settings.subject.show == 'true' %}
     <div class="{{ settings.subject.required|ifthen('true','required') }} field">
@@ -35,8 +35,6 @@
     {% if settings.captcha.show == 'true' %}  
         {{ component('captcha::code') }}
     {% endif %}   
-    <div class="ui horizontal divider mt-2"></div>
-    <button class="ui button green submit-button">{{ buttons.save.content }}</button>
-    <div class="ui horizontal divider"></div>
-    <div class="ui error message errors hidden mt-2"></div>
+
+    {{ component('components:form.footer',{ button_title: buttons.save.content }) }}    
 </form>

@@ -1,7 +1,9 @@
 {   
-    "labels": {
-        "notifications": "Notifications",
-        "email": "Email",
+    "title": {
+        "content": "Email",
+        "icon": "envelope"
+    },
+    "labels": {        
         "fields": {
             "email": "Receive notification by email"
         }

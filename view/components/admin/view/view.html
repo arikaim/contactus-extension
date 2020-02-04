@@ -4,6 +4,10 @@
     </div>
 </div>
 <div class="ui stackable text menu">
+    <div class="item">
+        <span class="font-bold pr-1">{{ labels.page }}</span>
+        {{ component('components:buttons.page-url',{ url: '/contact-us', class: 'fluid' }) }}                
+    </div>
     <div class="item right floated">
         {{ component('components:paginator.dropdown',{ namespace: 'contactus' }) }}
     </div>
@@ -28,7 +32,7 @@
             {{ component('contactus::admin.view.rows') }}
         </tbody>
     </table>
-    <div>           
+    <div id="paginator">           
         {{ component("components:paginator",{ namespace: 'contactus' }) }}
     </div>
 </div>

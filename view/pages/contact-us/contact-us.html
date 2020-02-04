@@ -1,8 +1,8 @@
-{{ component('navbar') }}
+{% component 'components:layout' %}
 <div class="ui container mt-20">
     <div class="ui header">
-        <h2 class="text-blue-900 font-bold">Contact Us</h2>
+        <h2 class="text-blue-900 font-bold">{{ title }}</h2>
     </div>
-    {{ component('contactus::panel',{ class: 'fluid' }) }}
+    {{ component('contactus>panel',{ class: 'fluid' }) }}
 </div>
-{{ component('footer') }}
+{% endcomponent %}

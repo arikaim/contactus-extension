@@ -1,8 +1,8 @@
 {
     "labels": {
-        "view": {
-            "content": "View",
-            "title": "View"
+        "messages": {
+            "content": "Messages",
+            "title": "Messages"
         }, 
         "preview": {
             "content": "Preview",

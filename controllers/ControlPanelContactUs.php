@@ -3,7 +3,7 @@
  * Arikaim
  *
  * @link        http://www.arikaim.com
- * @copyright   Copyright (c) 2016-2018 Konstantin Atanasov <info@arikaim.com>
+ * @copyright   Copyright (c)  Konstantin Atanasov <info@arikaim.com>
  * @license     http://www.arikaim.com/license
  * 
 */
@@ -11,8 +11,6 @@ namespace Arikaim\Extensions\ContactUs\Controllers;
 
 use Arikaim\Core\Db\Model;
 use Arikaim\Core\Controllers\ApiController;
-use Arikaim\Core\Arikaim;
-use Arikaim\Core\View\Template;
 
 /**
  * ContactUs Control Panel api controler
@@ -30,13 +28,13 @@ class ControlPanelContactUs extends ApiController
     }
 
     /**
-     * Delete contact us message
+     * Delete message
      *
-     * @param object $request
-     * @param object $response
-     * @param object $data
-     * @return object
-    */
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @param Validator $data
+     * @return Psr\Http\Message\ResponseInterface
+    */ 
     public function deleteController($request, $response, $data)
     { 
         $this->requireControlPanelPermission();
@@ -44,12 +42,12 @@ class ControlPanelContactUs extends ApiController
         $this->onDataValid(function($data) { 
             $uuid = $data->get('uuid');
             $model = Model::ContactUs('contactus')->findById($uuid);
-            if (is_object($model) == true) {
-                $result = $model->delete();
-                $this->setResult(['message' => 'Message removed','uuid' => $uuid]);
-            } else {
-                $this->setError('Not valid message id');
-            }
+            $result = $model->delete();
+            $this->setResponse($result,function() use($uuid) {                  
+                $this
+                    ->message('delete')
+                    ->field('uuid',$uuid);             
+            },'errors.delete');              
         });
         $data->validate();        
     }
@@ -57,45 +55,51 @@ class ControlPanelContactUs extends ApiController
     /**
      * Set readed status
      *
-     * @param object $request
-     * @param object $response
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
      * @param Validator $data
-     * @return object
-    */
+     * @return Psr\Http\Message\ResponseInterface
+    */   
     public function setReadedController($request, $response, $data)
     {
         $this->requireControlPanelPermission();
 
         $this->onDataValid(function($data) {        
-            $result = Model::ContactUs('contactus')->setRead($data->get('uuid'));
-            if ($result == true) {             
-                $this->setResult(['message' => 'Message status set to readed','uuid' => $data->get('uuid')]);
-            } else {
-                $this->setError('Not valid message id');
-            }
+            $uuid = $data->get('uuid');
+            $result = Model::ContactUs('contactus')->setRead($uuid);
+            $this->setResponse($result,function() use($uuid) {                  
+                $this
+                    ->message('readed')
+                    ->field('uuid',$uuid);             
+            },'errors.readed');           
         });
         $data->validate();
     }
 
     /**
-     * Set readed status
+     * Delete selected messages
      *
-     * @param object $request
-     * @param object $response
+     * @param \Psr\Http\Message\ServerRequestInterface $request
+     * @param \Psr\Http\Message\ResponseInterface $response
      * @param Validator $data
-     * @return object
-    */
+     * @return Psr\Http\Message\ResponseInterface
+    */   
     public function deleteSelectedController($request, $response, $data)
     {
         $this->requireControlPanelPermission();
 
         $this->onDataValid(function($data) {   
-            $items = Model::ContactUs('contactus')->findItems($data->get('selected',[]));          
+            $items = Model::ContactUs('contactus')->findItems($data->get('selected',[]));   
+            $count = 0;       
             if ($items !== false) {
                 $count = $items->count();
-                $result = $items->delete();
-                $this->setResult(['message' => 'Messages deleted!','count' => $count]);
+                $result = $items->delete();                                  
             }
+            $this->setResponse($result,function() use($count) {                  
+                $this
+                    ->message('delete')
+                    ->field('count',$count);             
+            },'errors.delete');        
         });
         $data->validate(); 
     }
