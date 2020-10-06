@@ -10,12 +10,12 @@
 namespace Arikaim\Extensions\ContactUs\Controllers;
 
 use Arikaim\Core\Db\Model;
-use Arikaim\Core\Controllers\ApiController;
+use Arikaim\Core\Controllers\ControlPanelApiController;
 
 /**
  * ContactUs Control Panel api controler
 */
-class ControlPanelContactUs extends ApiController
+class ControlPanelContactUs extends ControlPanelApiController
 {
     /**
      * Init controller
@@ -37,8 +37,6 @@ class ControlPanelContactUs extends ApiController
     */ 
     public function deleteController($request, $response, $data)
     { 
-        $this->requireControlPanelPermission();
-
         $this->onDataValid(function($data) { 
             $uuid = $data->get('uuid');
             $model = Model::ContactUs('contactus')->findById($uuid);
@@ -62,8 +60,6 @@ class ControlPanelContactUs extends ApiController
     */   
     public function setReadedController($request, $response, $data)
     {
-        $this->requireControlPanelPermission();
-
         $this->onDataValid(function($data) {        
             $uuid = $data->get('uuid');
             $result = Model::ContactUs('contactus')->setRead($uuid);
@@ -86,8 +82,6 @@ class ControlPanelContactUs extends ApiController
     */   
     public function deleteSelectedController($request, $response, $data)
     {
-        $this->requireControlPanelPermission();
-
         $this->onDataValid(function($data) {   
             $items = Model::ContactUs('contactus')->findItems($data->get('selected',[]));   
             $count = 0;       

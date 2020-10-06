@@ -21,7 +21,7 @@ class ContactUsSchema extends Schema
      *
      * @var string
      */
-    protected $tableName = "contact_us";
+    protected $tableName = 'contact_us';
 
     /**
      * Create table

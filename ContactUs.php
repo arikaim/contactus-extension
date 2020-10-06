@@ -39,14 +39,14 @@ class ContactUs extends Extension
         $this->createDbTable('ContactUsSchema');
 
         // Options
-        $form_settings = [
+        $formSettings = [
             'name'    => ['show' => false,'required' => false],
             'email'   => ['show' => false,'required' => false],
             'phone'   => ['show' => false,'required' => false],
             'subject' => ['show' => true,'required' => false],
             'captcha' => ['show' => true]
         ];
-        $this->createOption('contactus.form.settings',$form_settings);
+        $this->createOption('contactus.form.settings',$formSettings);
         $this->createOption('contactus.notifications.email','');
         $this->createOption('contactus.notifications.email.send',true);
         $this->createOption('contactus.send.message','Your message has been sent.');  

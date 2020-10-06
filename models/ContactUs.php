@@ -11,6 +11,8 @@ namespace Arikaim\Extensions\ContactUs\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Arikaim\Extensions\Category\Models\Category;
+
 use Arikaim\Core\Db\Traits\Uuid;
 use Arikaim\Core\Db\Traits\DateCreated;
 use Arikaim\Core\Db\Traits\Find;
@@ -30,7 +32,7 @@ class ContactUs extends Model
      *
      * @var string
      */
-    protected $table = "contact_us";
+    protected $table = 'contact_us';
 
     /**
      * Fillable attributes
@@ -65,13 +67,8 @@ class ContactUs extends Model
      * @return Relation
      */
     public function category()
-    {
-        $class = 'Arikaim\\Extensions\\Category\\Models\\Category';
-        if (class_exists($class) == true) {
-            return $this->belongsTo($class);
-        }
-        
-        return null;
+    {      
+        return $this->belongsTo(Category::class,'category_id');  
     }
 
     /**
@@ -84,7 +81,7 @@ class ContactUs extends Model
     public function setRead($id, $read = 1)
     {
         $model = $this->findById($id);
-        if (is_object($model) == false) {
+        if (\is_object($model) == false) {
             return false;
         }
         $model->read = $read;
