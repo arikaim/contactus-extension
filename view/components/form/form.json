@@ -25,7 +25,7 @@
     },   
     "buttons": {
         "save": {
-            "content": "Save"
+            "content": "Send"
         }
     }
 }
