@@ -23,8 +23,6 @@ class ContactUs extends Extension
     */
     public function install()
     {
-        // Contact us page
-        $this->addShowPageRoute('/contact-us','contactus>contact-us');
         // Save message
         $this->addApiRoute('GET','/api/contact-us/config','ContactUs','getConfig');      
         $this->addApiRoute('POST','/api/contact-us','ContactUs','add');

@@ -3,5 +3,5 @@
 #### Features
  * Optional captcha protection
  * Form fields settings.
- * Contacu us form.
+ * Contact us form.
  * Send email notification.
