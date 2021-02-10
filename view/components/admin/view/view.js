@@ -7,8 +7,21 @@
 
 function ContactUsView() {
     var self = this;
+    this.messages = null;
 
-    this.init = function() {      
+    this.loadMessages = function() {
+        if (isObject(this.messages) == true) {
+            return;
+        }
+
+        arikaim.component.loadProperties('contactus::admin',function(params) { 
+            self.messages = params.messages;
+        }); 
+    };
+
+    this.init = function() {           
+        this.loadMessages();
+
         paginator.init('contactus_rows',"contactus::admin.view.rows",'contactus');         
         
         $('.actions').dropdown({});       
@@ -19,10 +32,9 @@ function ContactUsView() {
         },'contactus');
 
         arikaim.ui.button('#delete_selected',function(element) {
-            var component = arikaim.component.get('contactus::admin');
             return modal.confirmDelete({ 
-                title: component.getProperty('messages.remove-selected.title'),
-                description: component.getProperty('messages.remove-selected.content')
+                title: self.messages.remove_selected.title,
+                description: self.messages.remove_selected.content
             },function() {
                 var selected = arikaim.ui.getChecked('.selected-row');
                 contactUsAdmin.deleteSelected(selected,function(result) {
@@ -57,8 +69,8 @@ function ContactUsView() {
         arikaim.ui.button('.delete-button',function(element) {
             var uuid = $(element).attr('uuid');          
             return modal.confirmDelete({ 
-                title: component.getProperty('messages.remove.title'),
-                description: component.getProperty('messages.remove.content')
+                title: self.messages.remove.title,
+                description: self.messages.remove.content
             },function() {
                 contactUsAdmin.delete(uuid,function(result) {
                     arikaim.ui.table.removeRow('#' + uuid);
@@ -72,4 +84,5 @@ var contactUsView = new ContactUsView();
 
 $(document).ready(function() {
     contactUsView.init();
+    contactUsView.initRows();
 });

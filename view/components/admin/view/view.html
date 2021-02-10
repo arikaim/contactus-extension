@@ -1,34 +1,35 @@
-<div class="ui stackable grid">
-    <div class="sixteen wide column mt-10">
-        {{ component("components:search",{ namespace: 'contactus' }) }}
+<div class="ui segment">
+    <div class="ui stackable grid">
+        <div class="five wide column">
+            {{ component("components:search.form",{ namespace: 'contactus' }) }}
+        </div>
+        <div class="ten wide column">
+    
+        </div>
+        <div class="one wide column right floated">
+            {{ component('components:paginator.dropdown',{ namespace: 'contactus' }) }}
+        </div>
     </div>
 </div>
-<div class="ui stackable text menu">    
-    <div class="item right floated">
-        {{ component('components:paginator.dropdown',{ namespace: 'contactus' }) }}
-    </div>
-</div>
-<div class="ui mt-2">   
-    <table class="ui compact stackable selectable borderless basic table">
-        <thead class="bg-blue-100 border-2 border-solid border-blue-100">
-            <tr>
-                <th class="collapsing center aligned">
-                    {{ component('contactus::admin.view.actions') }}
-                </th>
-                <th class="collapsing">{{ labels.actions }}</th>
-                <th class="two wide">{{ labels.date }}</th>  
-                <th>{{ labels.subject }}</th>           
-                <th>{{ labels.message }}</th>
-                <th>{{ labels.name }}</th>
-                <th>{{ labels.email }}</th>
-                <th>{{ labels.phone }}</th>                            
-            </tr>
-        </thead>
-        <tbody id="contactus_rows">
-            {{ component('contactus::admin.view.rows') }}
-        </tbody>
-    </table>
-    <div id="paginator">           
-        {{ component("components:paginator",{ namespace: 'contactus' }) }}
-    </div>
+<table class="ui compact stackable selectable borderless basic table">
+    <thead class="bg-blue-100 border-2 border-solid border-blue-100">
+        <tr>
+            <th class="collapsing center aligned">
+                {{ component('contactus::admin.view.actions') }}
+            </th>
+            <th class="collapsing">{{ labels.actions }}</th>
+            <th class="two wide">{{ labels.date }}</th>  
+            <th>{{ labels.subject }}</th>           
+            <th>{{ labels.message }}</th>
+            <th>{{ labels.name }}</th>
+            <th>{{ labels.email }}</th>
+            <th>{{ labels.phone }}</th>                            
+        </tr>
+    </thead>
+    <tbody id="contactus_rows">
+        {{ component('contactus::admin.view.rows') }}
+    </tbody>
+</table>
+<div id="paginator">           
+    {{ component("components:paginator",{ namespace: 'contactus' }) }}
 </div>

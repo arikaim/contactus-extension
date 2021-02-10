@@ -18,7 +18,7 @@
             "title": "Confirm Remove",
             "content": "Confirm remove message."
         },
-        "remove-selected": {
+        "remove_selected": {
             "title": "Confirm Remove",
             "content": "Confirm remove selected messages."
         }

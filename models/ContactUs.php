@@ -78,7 +78,7 @@ class ContactUs extends Model
      * @param integer $read
      * @return boolean
      */
-    public function setRead($id, $read = 1)
+    public function setRead($id, int $read = 1): bool
     {
         $model = $this->findById($id);
         if (\is_object($model) == false) {
@@ -86,6 +86,6 @@ class ContactUs extends Model
         }
         $model->read = $read;
 
-        return $model->save();
+        return (bool)$model->save();
     }
 }

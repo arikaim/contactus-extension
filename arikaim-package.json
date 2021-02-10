@@ -7,9 +7,16 @@
     "description": "Contact Form.",
     "short-description": "Contact Form.",
     "private-repository": true,
-    "repository": "https://github.com/arikaim/contactus-extension.git",
-    "version": "1.0.4",
+    "repository-type": "arikaim",
+    "repository": "arikaim-repository/contactus-extension.git",
+    "version": "1.1.0",
     "position": "3",
+    "require": {
+        "extensions": [          
+            "captcha:optional",
+            "category:optional"
+        ]
+    },
     "admin-menu": {        
         "title": "Contact Us",
         "icon": "address book outline",

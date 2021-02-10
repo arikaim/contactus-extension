@@ -8,7 +8,7 @@
         "subject": "Subject",
         "email": "Email",
         "category": "Category",
-        "actions": "Actions"
+        "actions": "Action"
     },
     "buttons": {
         "view": {
