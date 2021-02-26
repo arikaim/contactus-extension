@@ -4,6 +4,7 @@
  *  @license    http://www.arikaim.com/license
  *  http://www.arikaim.com
  */
+'use strict';
 
 function ContactUsControlPanel() {
    
@@ -26,6 +27,6 @@ function ContactUsControlPanel() {
 
 var contactUsAdmin = new ContactUsControlPanel();
 
-$(document).ready(function() {
+arikaim.component.onLoaded(function() {
     contactUsAdmin.init();
 });

@@ -4,6 +4,7 @@
  *  @license    http://www.arikaim.com/license
  *  http://www.arikaim.com
 */
+'use strict';
 
 function ContactUsView() {
     var self = this;
@@ -49,8 +50,6 @@ function ContactUsView() {
     };
 
     this.initRows = function() {
-        var component = arikaim.component.get('contactus::admin');
-
         arikaim.ui.button('.view-message',function(element) {
             var uuid = $(element).parent().attr('id');   
             contactUsAdmin.setReaded(uuid).done(function(result) {
@@ -82,7 +81,7 @@ function ContactUsView() {
 
 var contactUsView = new ContactUsView();
 
-$(document).ready(function() {
+arikaim.component.onLoaded(function() {
     contactUsView.init();
     contactUsView.initRows();
 });

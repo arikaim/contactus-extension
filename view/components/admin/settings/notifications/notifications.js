@@ -1,4 +1,6 @@
-$(document).ready(function() {
+'use strict';
+
+arikaim.component.onLoaded(function() {
     $('#send_email_notifications').checkbox({
         onChange: function() {
             var checked = $(this).prop('checked');        

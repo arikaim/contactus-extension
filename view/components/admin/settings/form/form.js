@@ -1,5 +1,6 @@
+'use strict';
 
-$(document).ready(function() {
+arikaim.component.onLoaded(function() {
     $('#settings_form .checkbox').checkbox({
         onChange: function() {
             var settings = contactUsSettings.getSettings();

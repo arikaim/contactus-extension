@@ -4,6 +4,7 @@
  *  @license    http://www.arikaim.com/license
  *  http://www.arikaim.com
  */
+'use strict';
 
 function ContactUsSettings() {    
 
@@ -55,6 +56,6 @@ function ContactUsSettings() {
 
 var contactUsSettings = new ContactUsSettings();
 
-$(document).ready(function() {
+arikaim.component.onLoaded(function() {
     contactUsSettings.init();
 })
