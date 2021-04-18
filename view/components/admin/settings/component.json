@@ -1,5 +1,7 @@
 {
     "include": {
-        "js": "system:options"
+        "js": [
+            "system:options"
+        ]
     }
 }

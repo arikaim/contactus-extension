@@ -9,24 +9,20 @@
 function ContactUsControlPanel() {
    
     this.setReaded = function(uuid, onSuccess, onError) {                 
-        return arikaim.put('/api/contact-us/admin/readed/'+ uuid,null,onSuccess,onError);      
+        return arikaim.put('/api/admin/contact-us/readed/'+ uuid,null,onSuccess,onError);      
     };
 
     this.delete = function(uuid, onSuccess, onError) {
-        return arikaim.delete('/api/contact-us/admin/' + uuid,onSuccess,onError);
+        return arikaim.delete('/api/admin/contact-us/' + uuid,onSuccess,onError);
     };
 
     this.deleteSelected = function(selected, onSuccess, onError) {
-        return arikaim.put('/api/contact-us/admin/delete/selected',selected,onSuccess,onError);      
-    };
-
-    this.init = function() {    
-        arikaim.ui.tab(); 
-    };
+        return arikaim.put('/api/admin/contact-us/delete/selected',selected,onSuccess,onError);      
+    };  
 }
 
 var contactUsAdmin = new ContactUsControlPanel();
 
 arikaim.component.onLoaded(function() {
-    contactUsAdmin.init();
+    arikaim.ui.tab(); 
 });

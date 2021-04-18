@@ -14,10 +14,5 @@ arikaim.component.onLoaded(function() {
     });
 
     arikaim.ui.button('#default_button',function(element) {      
-        arikaim.component.loadProperties('contactus::done-message',function(result) {
-            if (isEmpty(result.message) == false) {
-                $('#send_message').val(result.message); 
-            }
-        });
     });
 });

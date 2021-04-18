@@ -27,9 +27,9 @@ class ContactUs extends Extension
         $this->addApiRoute('GET','/api/contact-us/config','ContactUs','getConfig');      
         $this->addApiRoute('POST','/api/contact-us','ContactUs','add');
         // Control Panel
-        $this->addApiRoute('PUT','/api/contact-us/admin/readed/{uuid}','ControlPanelContactUs','setReaded','session'); 
-        $this->addApiRoute('PUT','/api/contact-us/admin/delete/selected','ControlPanelContactUs','deleteSelected','session'); 
-        $this->addApiRoute('DELETE','/api/contact-us/admin/{uuid}','ControlPanelContactUs','delete','session');   
+        $this->addApiRoute('PUT','/api/admin/contact-us/readed/{uuid}','ControlPanelContactUs','setReaded','session'); 
+        $this->addApiRoute('PUT','/api/admin/contact-us/delete/selected','ControlPanelContactUs','deleteSelected','session'); 
+        $this->addApiRoute('DELETE','/api/admin/contact-us/{uuid}','ControlPanelContactUs','delete','session');   
 
         // Register events
         $this->registerEvent('contactus.create','Trigger after new contact us message is created');

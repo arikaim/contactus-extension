@@ -8,21 +8,9 @@
 
 function ContactUsView() {
     var self = this;
-    this.messages = null;
-
-    this.loadMessages = function() {
-        if (isObject(this.messages) == true) {
-            return;
-        }
-
-        arikaim.component.loadProperties('contactus::admin',function(params) { 
-            self.messages = params.messages;
-        }); 
-    };
-
+ 
     this.init = function() {           
-        this.loadMessages();
-
+        this.loadMessages('contactus::admin');
         paginator.init('contactus_rows',"contactus::admin.view.rows",'contactus');         
         
         $('.actions').dropdown({});       
@@ -34,8 +22,8 @@ function ContactUsView() {
 
         arikaim.ui.button('#delete_selected',function(element) {
             return modal.confirmDelete({ 
-                title: self.messages.remove_selected.title,
-                description: self.messages.remove_selected.content
+                title: self.getMessage('remove_selected.title'),
+                description: self.getMessage('remove_selected.content')
             },function() {
                 var selected = arikaim.ui.getChecked('.selected-row');
                 contactUsAdmin.deleteSelected(selected,function(result) {
@@ -66,7 +54,8 @@ function ContactUsView() {
         });
 
         arikaim.ui.button('.delete-button',function(element) {
-            var uuid = $(element).attr('uuid');          
+            var uuid = $(element).attr('uuid');   
+
             return modal.confirmDelete({ 
                 title: self.messages.remove.title,
                 description: self.messages.remove.content
@@ -79,7 +68,7 @@ function ContactUsView() {
     };
 }
 
-var contactUsView = new ContactUsView();
+var contactUsView = createObject(ContactUsView,ControlPanelView);
 
 arikaim.component.onLoaded(function() {
     contactUsView.init();
