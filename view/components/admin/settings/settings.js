@@ -13,7 +13,7 @@ function ContactUsSettings() {
     };
 
     this.getSettings = function(form_id) {
-        return result = {
+        return {
             name: {
                 show: $('#show_name').prop('checked'),
                 required: $('#require_name').prop('checked'),
