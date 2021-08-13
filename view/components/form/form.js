@@ -18,8 +18,8 @@ function ContactUs() {
                 }]
             }
         };
-        this.loadSettings().then(function(data) {
-            var config = JSON.parse(data);
+        this.loadSettings().then(function(config) {
+          
             if (config.subject.required == "true") {
                 fields.subject = {
                     identifier: "subject",      
