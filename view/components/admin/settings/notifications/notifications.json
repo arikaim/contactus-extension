@@ -4,6 +4,7 @@
         "icon": "envelope"
     },
     "labels": {        
+        "email": "Email",
         "fields": {
             "email": "Receive notification by email"
         }

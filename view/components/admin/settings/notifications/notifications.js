@@ -10,11 +10,12 @@ arikaim.component.onLoaded(function() {
             options.save('contactus.notifications.email.send',checked);
         }   
     });
-    
-    contactUsSettings.addNotificationFormRules();
 
     arikaim.ui.form.onSubmit("#notifications_settings_form",function() {  
         var notificationEmail = $('#notification_email').val();
-        return options.save('contactus.notifications.email',notificationEmail);
+     
+        return options.save('contactus.notifications.email',notificationEmail,function(result) {
+            arikaim.page.toastMessage(result.message);
+        });
     });
 });

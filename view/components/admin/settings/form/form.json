@@ -12,10 +12,11 @@
         }
     },
     "labels": {
-        "name": "Name Field",
-        "email": "Email Field",
-        "phone": "Phone Field",
-        "subject": "Subject Field",
+        "fields": "Fields",
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "subject": "Subject",
         "captcha": "Captcha",
         "required": "Required",
         "protect": "Spam and abuse protection with captcha",

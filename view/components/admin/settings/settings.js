@@ -58,4 +58,4 @@ var contactUsSettings = new ContactUsSettings();
 
 arikaim.component.onLoaded(function() {
     contactUsSettings.init();
-})
+});

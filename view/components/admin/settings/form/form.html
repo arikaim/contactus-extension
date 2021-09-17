@@ -2,67 +2,67 @@
 {% set send_message = service('options').get('contactus.send.message',message) %}
 {% component 'components:tabs.vertical.content' %}
     <div class="ui equal width form mt-4" id="settings_form">  
-        <div class="ui field segment">
-            <label>{{ labels.name }}</label>
-            <div class="ui checkbox">
-                <input type="checkbox" name="show_name" id="show_name" tabindex="0" class="hidden" {{ settings.name.show|ifthen(true,'checked') }} >
-                <label>{{ labels.show }}</label>
+        <div class="ui segment">
+            <h4>{{ labels.fields }}</h4>
+            <div class="ui field">
+                <label>{{ labels.name }}</label>
+                <div class="ui checkbox">
+                    <input type="checkbox" name="show_name" id="show_name" tabindex="0" class="hidden" {{ settings.name.show|ifthen(true,'checked') }} >
+                    <label>{{ labels.show }}</label>
+                </div>
+                <div class="ui checkbox ml-2">
+                    <input type="checkbox" name="require_name" id="require_name" tabindex="0" class="hidden" {{ settings.name.required|ifthen(true,'checked') }} >
+                    <label>{{ labels.required }}</label>
+                </div>
             </div>
-            <div class="ui checkbox margin-left-1">
-                <input type="checkbox" name="require_name" id="require_name" tabindex="0" class="hidden" {{ settings.name.required|ifthen(true,'checked') }} >
-                <label>{{ labels.required }}</label>
+            <div class="ui field">
+                <label>{{ labels.email }}</label>
+                <div class="ui checkbox">
+                    <input type="checkbox" name="show_email" id="show_email" tabindex="0" class="hidden" {{ settings.email.show|ifthen(true,'checked') }} >
+                    <label>{{ labels.show }}</label>
+                </div>
+                <div class="ui checkbox ml-2">
+                    <input type="checkbox" name="require_email" id="require_email" tabindex="0" class="hidden" {{ settings.email.required|ifthen(true,'checked') }} >
+                    <label>{{ labels.required }}</label>
+                </div>
             </div>
-        </div>
-        <div class="ui field segment">
-            <label>{{ labels.email }}</label>
-            <div class="ui checkbox">
-                <input type="checkbox" name="show_email" id="show_email" tabindex="0" class="hidden" {{ settings.email.show|ifthen(true,'checked') }} >
-                <label>{{ labels.show }}</label>
+            <div class="ui field">
+                <label>{{ labels.phone }}</label>
+                <div class="ui checkbox">
+                    <input type="checkbox" name="show_phone" id="show_phone" tabindex="0" class="hidden" {{ settings.phone.show|ifthen(true,'checked') }} >
+                    <label>{{ labels.show }}</label>
+                </div>
+                <div class="ui checkbox ml-2">
+                    <input type="checkbox" name="require_phone" id="require_phone" tabindex="0" class="hidden" {{ settings.phone.required|ifthen(true,'checked') }} >
+                    <label>{{ labels.required }}</label>
+                </div>
             </div>
-            <div class="ui checkbox margin-left-1">
-                <input type="checkbox" name="require_email" id="require_email" tabindex="0" class="hidden" {{ settings.email.required|ifthen(true,'checked') }} >
-                <label>{{ labels.required }}</label>
-            </div>
-        </div>
-        <div class="ui field segment">
-            <label>{{ labels.phone }}</label>
-            <div class="ui checkbox">
-                <input type="checkbox" name="show_phone" id="show_phone" tabindex="0" class="hidden" {{ settings.phone.show|ifthen(true,'checked') }} >
-                <label>{{ labels.show }}</label>
-            </div>
-            <div class="ui checkbox margin-left-1">
-                <input type="checkbox" name="require_phone" id="require_phone" tabindex="0" class="hidden" {{ settings.phone.required|ifthen(true,'checked') }} >
-                <label>{{ labels.required }}</label>
-            </div>
-        </div>
-        <div class="ui field segment">
-            <label>{{ labels.subject }}</label>
-            <div class="ui checkbox">
-                <input type="checkbox" name="show_subject" id="show_subject" tabindex="0" class="hidden" {{ settings.subject.show|ifthen(true,'checked') }} >
-                <label>{{ labels.show }}</label>
-            </div>
-            <div class="ui checkbox margin-left-1">
-                <input type="checkbox" name="require_subject" id="require_subject" tabindex="0" class="hidden" {{ settings.subject.required|ifthen(true,'checked') }}>
-                <label>{{ labels.required }}</label>
-            </div>
-        </div>
-        <div class="ui field segment">
+            <div class="ui field">
+                <label>{{ labels.subject }}</label>
+                <div class="ui checkbox">
+                    <input type="checkbox" name="show_subject" id="show_subject" tabindex="0" class="hidden" {{ settings.subject.show|ifthen(true,'checked') }} >
+                    <label>{{ labels.show }}</label>
+                </div>
+                <div class="ui checkbox ml-2">
+                    <input type="checkbox" name="require_subject" id="require_subject" tabindex="0" class="hidden" {{ settings.subject.required|ifthen(true,'checked') }}>
+                    <label>{{ labels.required }}</label>
+                </div>
+            </div>         
+        </div>                    
+        <div class="ui segment field">
             <label>{{ labels.captcha }}</label>
             <div class="ui checkbox">
                 <input type="checkbox" name="show_captcha" id="show_captcha" tabindex="0" class="hidden" {{ settings.captcha.show|ifthen(true,'checked') }}>
                 <label>{{ labels.protect }}</label>
             </div>
-        </div>
-        <div class="ui field segment">
+        </div>     
+        <div class="ui field">
             <label>{{ labels.send }}</label>
             <textarea name="send_message" id="send_message" rows="5" cols="5">{{ send_message }}</textarea> 
             <div class="mt-2"></div>
             <a class="ui small green button" id="save_send_message">
                 {{ buttons.save.content }}
-            </a>
-            <a class="ui basic small right floated button" id="default_button">
-                {{ buttons.default.content }}
-            </a>
+            </a>           
         </div>
     </div>
 {% endcomponent %}
