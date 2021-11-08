@@ -1,13 +1,13 @@
 <div class="ui segment">
     <div class="ui stackable grid">
         <div class="five wide column">
-            {{ component("components:search.form",{ namespace: 'contactus' }) }}
+            {{ component("semantic~search.form",{ namespace: 'contactus' }) }}
         </div>
         <div class="ten wide column">
     
         </div>
         <div class="one wide column right aligned">
-            {{ component('components:paginator.dropdown',{ namespace: 'contactus' }) }}
+            {{ component('semantic~paginator.dropdown',{ namespace: 'contactus' }) }}
         </div>
     </div>
 </div>
@@ -31,5 +31,5 @@
     </tbody>
 </table>
 <div id="paginator">           
-    {{ component("components:paginator",{ namespace: 'contactus' }) }}
+    {{ component("semantic~paginator",{ namespace: 'contactus' }) }}
 </div>

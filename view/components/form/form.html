@@ -1,4 +1,3 @@
-
 {% set settings = getOption('contactus.form.settings') %}
 <form class="ui equal width form" id="contact_us_form">    
     {% if settings.subject.show == 'true' %}
@@ -35,6 +34,5 @@
     {% if settings.captcha.show == 'true' %}  
         {{ component('captcha::code') }}
     {% endif %}   
-
-    {{ component('components:form.footer',{ button_title: buttons.save.content }) }}    
+    {{ component('semantic~form.footer',{ button_title: buttons.save.content }) }}    
 </form>

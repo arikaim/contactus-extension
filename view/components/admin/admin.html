@@ -4,7 +4,7 @@
     { id: 'preview_button', title: labels.preview.content, component: 'contactus::admin.preview', icon: 'file outline' }
 ] %}
 
-{{  component('components:tabs',{ 
+{{  component('semantic~tabs',{ 
         items: items,
         menu: { component: 'system:admin.extensions.menu.actions', extension: 'contactus' },
         content: { component: 'contactus::admin.view' } 
