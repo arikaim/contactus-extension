@@ -11,25 +11,27 @@
         </div>
     </div>
 </div>
-<table class="ui compact stackable selectable borderless basic table">
-    <thead class="table-head">
-        <tr>
-            <th class="collapsing center aligned">
-                {{ component('contactus::admin.view.actions') }}
-            </th>
-            <th class="collapsing">{{ labels.actions }}</th>
-            <th class="two wide">{{ labels.date }}</th>  
-            <th>{{ labels.subject }}</th>           
-            <th>{{ labels.message }}</th>
-            <th>{{ labels.name }}</th>
-            <th>{{ labels.email }}</th>
-            <th>{{ labels.phone }}</th>                            
-        </tr>
-    </thead>
-    <tbody id="contactus_rows">
-        {{ component('contactus::admin.view.rows') }}
-    </tbody>
-</table>
-<div id="paginator">           
-    {{ component("semantic~paginator",{ namespace: 'contactus' }) }}
+<div class="ui segment">
+    <table class="ui compact stackable selectable borderless basic table">
+        <thead class="table-head">
+            <tr>
+                <th class="collapsing center aligned">
+                    {{ component('contactus::admin.view.actions') }}
+                </th>
+                <th class="collapsing">{{ labels.actions }}</th>
+                <th class="two wide">{{ labels.date }}</th>  
+                <th>{{ labels.subject }}</th>           
+                <th>{{ labels.message }}</th>
+                <th>{{ labels.name }}</th>
+                <th>{{ labels.email }}</th>
+                <th>{{ labels.phone }}</th>                            
+            </tr>
+        </thead>
+        <tbody id="contactus_rows">
+            {{ component('contactus::admin.view.rows') }}
+        </tbody>
+    </table>
+    <div id="paginator">           
+        {{ component("semantic~paginator",{ namespace: 'contactus' }) }}
+    </div>
 </div>

@@ -9,22 +9,27 @@
 {% set list = list.orderBy('date_created','desc') %}
 {% set paginator = paginate(list,'contactus')  %}
 
-{% for item in paginator.getItems() %}
-{% set read_style = (item.read != 1) ? 'font-bold' : ''%}
-<tr id="{{ item.uuid }}" class="row {{ read_style }}">        
-    <td class="right aligned">
-        <input type="checkbox" class="selected-row" name="selected[]" value="{{ item.uuid }}">
-    </td>
-    <td>
-        <button class="ui basic mini button icon delete-button" uuid="{{ item.uuid }}">
-            <i class="icon trash orange"></i>
-        </button>
-    </td>
-    <td class="view-message">{{ item.date_created|dateTimeFormat }}</td>
-    <td class="view-message">{{ item.subject }}</td>
-    <td class="view-message">{{ item.message|striptags()|slice(0,20) }}</td>
-    <td class="view-message">{{ item.name }}</td>
-    <td class="view-message">{{ item.email }}</td>
-    <td >{{ item.phone }}</td>              
+{% if paginator.getItems()|length == 0 %}
+<tr>
+    <td colspan="8">..</td>
 </tr>
+{% endif %}
+{% for item in paginator.getItems() %}
+    {% set read_style = (item.read != 1) ? 'font-bold' : ''%}
+    <tr id="{{ item.uuid }}" class="row {{ read_style }}">        
+        <td class="right aligned">
+            <input type="checkbox" class="selected-row" name="selected[]" value="{{ item.uuid }}">
+        </td>
+        <td>
+            <button class="ui basic mini button icon delete-button" uuid="{{ item.uuid }}">
+                <i class="icon trash orange"></i>
+            </button>
+        </td>
+        <td class="view-message">{{ item.date_created|dateTimeFormat }}</td>
+        <td class="view-message">{{ item.subject }}</td>
+        <td class="view-message">{{ item.message|striptags()|slice(0,20) }}</td>
+        <td class="view-message">{{ item.name }}</td>
+        <td class="view-message">{{ item.email }}</td>
+        <td >{{ item.phone }}</td>              
+    </tr>
 {% endfor %}   

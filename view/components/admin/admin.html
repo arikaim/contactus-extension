@@ -1,11 +1,9 @@
-{% set items = [ 
-    { id: 'view_button', title: labels.messages.content, component: 'contactus::admin.view', icon: 'envelope outline', active: true },
-    { id: 'settings_button', title: labels.settings.content, component: 'contactus::admin.settings', icon: 'cogs' },
-    { id: 'preview_button', title: labels.preview.content, component: 'contactus::admin.preview', icon: 'file outline' }
-] %}
-
 {{  component('semantic~tabs',{ 
-        items: items,
+        items: [ 
+            { id: 'view_button', title: labels.messages.content, component: 'contactus::admin.view', icon: 'envelope outline', active: true },
+            { id: 'settings_button', title: labels.settings.content, component: 'contactus::admin.settings', icon: 'cogs' },
+            { id: 'preview_button', title: labels.preview.content, component: 'contactus::admin.preview', icon: 'file outline' }
+        ],
         menu: { component: 'system:admin.extensions.menu.actions', extension: 'contactus' },
         content: { component: 'contactus::admin.view' } 
     })
