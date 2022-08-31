@@ -39,42 +39,44 @@ class ContactUs extends ApiController
      * @param Validator $data
      * @return Psr\Http\Message\ResponseInterface
     */ 
-    public function addController($request, $response, $data) 
-    {               
-        $settings = $this->get('options')->get('contactus.form.settings');
-    
+    public function add($request, $response, $data) 
+    {         
+        $data
+            ->addRule('text:min=2','message')
+            ->validate(true);
+
+        $settings = $this->get('options')->get('contactus.form.settings'); 
         if ($settings['captcha']['show'] == true) {           
-            if ($this->verifyCaptcha($request,$data) == false) {            
-                return;      
+            if ($this->verifyCaptcha($request,$data) == false) { 
+                $this->error('captcha.notvalid','Not valid captcha');      
+                return false;      
             } 
         }
        
-        $this->onDataValid(function($data) { 
-            $model = Model::ContactUs('contactus');
-            $model->authId = $this->get('access')->getId();
-            
-            $message = $model->create($data->toArray());
+        $model = Model::ContactUs('contactus');
+        $model->authId = $this->get('access')->getId();
+        
+        $message = $model->create($data->toArray());
+        if (isset($message->uuid) == false) {
+            $this->error('errors.save','Error save message');
+            return false;
+        }
 
-            $this->setResponse(\is_object($message),function() use($message,$data) {                      
-                $this->get('event')->dispatch('contactus.add',$data->toArray());                     
-                $sendEmail = $this->get('options')->get('contactus.notifications.email.send');
+        $this->get('event')->dispatch('contactus.add',$data->toArray());    
 
-                if ($sendEmail == true) {       
-                    $notificationsEmail = $this->get('options')->get('contactus.notifications.email');                  
-                    // send mail 
-                    $this->get('mailer')
-                        ->create('contactus>contact-us',['message' => $message->toArray()])
-                        ->to($notificationsEmail)                      
-                        ->send();                        
-                }
-                $this
-                    ->message('save')
-                    ->field('uuid',$message->uuid);     
-            },'errors.save'); 
-        });
-        $data
-            ->addRule('text:min=2','message')
-            ->validate();
+        $sendEmail = $this->get('options')->get('contactus.notifications.email.send');
+        if ($sendEmail == true) {       
+            $notificationsEmail = $this->get('options')->get('contactus.notifications.email');                  
+            // send mail 
+            $this->get('mailer')
+                ->create('contactus>contact-us',['message' => $message->toArray()])
+                ->to($notificationsEmail)                      
+                ->send();                        
+        }
+
+        $this
+            ->message('save')
+            ->field('uuid',$message->uuid);     
     }
 
     /**

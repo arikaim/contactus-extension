@@ -81,7 +81,7 @@ class ContactUs extends Model
     public function setRead($id, int $read = 1): bool
     {
         $model = $this->findById($id);
-        if (\is_object($model) == false) {
+        if ($model == null) {
             return false;
         }
         $model->read = $read;
