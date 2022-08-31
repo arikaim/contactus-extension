@@ -65,12 +65,13 @@ class ContactUs extends ApiController
         $this->get('event')->dispatch('contactus.add',$data->toArray());    
 
         $sendEmail = $this->get('options')->get('contactus.notifications.email.send');
-        if ($sendEmail == true) {       
-            $notificationsEmail = $this->get('options')->get('contactus.notifications.email');                  
+        $notificationsEmail = $this->get('options')->get('contactus.notifications.email');  
+        if ($sendEmail == true && empty($notificationsEmail) == false) {       
             // send mail 
             $this->get('mailer')
                 ->create('contactus>contact-us',['message' => $message->toArray()])
-                ->to($notificationsEmail)                      
+                ->to($notificationsEmail)
+                ->from($this->get('options')->get('mailer.from.email',$notificationsEmail))                      
                 ->send();                        
         }
 
