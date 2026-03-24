@@ -1,25 +1,17 @@
-<div class="ui segment">
-    <div class="ui stackable grid">
-        <div class="five wide column">
-            {{ component("semantic~search.form",{ namespace: 'contactus' }) }}
-        </div>
-        <div class="five wide column">
-    
-        </div>
-        <div class="six wide column right aligned">
-            {{ component('semantic~paginator.dropdown',{ namespace: 'contactus' }) }}
-        </div>
-    </div>
+<div class="{{ theme.panel }} mt-4">   
+    <div class="w-1/4">
+        {{ component("system:admin.search.form",{ namespace: 'contactus' }) }}
+    </div>  
 </div>
-<div class="ui segment">
-    <table class="ui compact stackable selectable borderless basic table">
-        <thead class="table-head">
+<div class="mt-4 {{ tmeme.panel }}">
+    <table class="{{ theme.table.default }}">
+        <thead>
             <tr>
-                <th class="collapsing center aligned">
+                <th class="">
                     {{ component('contactus::admin.view.actions') }}
                 </th>
-                <th class="collapsing">{{ labels.actions }}</th>
-                <th class="two wide">{{ labels.date }}</th>  
+                <th class="">{{ labels.actions }}</th>
+                <th class="">{{ labels.date }}</th>  
                 <th>{{ labels.subject }}</th>           
                 <th>{{ labels.message }}</th>
                 <th>{{ labels.name }}</th>
@@ -27,11 +19,18 @@
                 <th>{{ labels.phone }}</th>                            
             </tr>
         </thead>
-        <tbody id="contactus_rows">
+        <tbody 
+            id="contactus_rows">
             {{ component('contactus::admin.view.rows') }}
         </tbody>
     </table>
-    <div id="paginator">           
-        {{ component("semantic~paginator",{ namespace: 'contactus' }) }}
+    <div class="mt-4 ml-2" id="paginator"> 
+         {{  component("system:admin.paginator",{ 
+                id: 'messages_paginator',
+                namespace: 'contactus',
+                rows_selector: 'contactus_rows',
+                component:"contactus::admin.view.rows" 
+            })  
+        }}                     
     </div>
 </div>

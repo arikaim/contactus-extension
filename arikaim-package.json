@@ -8,7 +8,7 @@
     "short-description": "Contact Form.",   
     "repository-type": "arikaim",
     "repository": "https://github.com/arikaim/contactus-extension.git",
-    "version": "1.1.9",
+    "version": "2.0.0",
     "position": "3",
     "require": {
         "extensions": [          
@@ -18,9 +18,8 @@
     },
     "admin-menu": {        
         "title": "Contact Us",
-        "icon": "address book outline",
-        "page-title": "Contact Us",
-        "page-icon": "address book outline",       
+        "svg_icon": "icons~note",
+        "page-title": "Contact Us",               
         "component": "contactus::admin"
     }
 }

@@ -1,10 +1,33 @@
-{{  component('semantic~tabs',{ 
+{{  component('system:admin.tabs',{ 
         items: [ 
-            { id: 'view_button', title: labels.messages.content, component: 'contactus::admin.view', icon: 'envelope outline', active: true },
-            { id: 'settings_button', title: labels.settings.content, component: 'contactus::admin.settings', icon: 'cogs' },
-            { id: 'preview_button', title: labels.preview.content, component: 'contactus::admin.preview', icon: 'file outline' }
+            { 
+                title: labels.messages.content, 
+                component: 'contactus::admin.view', 
+                svg_icon: 'icons~mail', 
+                active: true 
+            },
+            { 
+                title: labels.settings.content, 
+                component: 'contactus::admin.settings', 
+                svg_icon: 'icons~cog' 
+            },
+            { 
+                title: labels.preview.content, 
+                component: 'contactus::admin.preview', 
+                svg_icon: 'icons~document' 
+            }
         ],
-        menu: { component: 'system:admin.extensions.menu.actions', extension: 'contactus' },
-        content: { component: 'contactus::admin.view' } 
+        menu: { 
+            component: 'system:admin.extensions.menu.actions', 
+            extension: 'contactus' 
+        },
+        content: { 
+            component: 'contactus::admin.view' 
+        } 
     })
+}}
+
+{{  component('system:admin.modal.confirm',{
+        id: 'confirm_delete'       
+    }) 
 }}

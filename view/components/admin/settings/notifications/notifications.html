@@ -1,24 +1,36 @@
 {% set send_email_notifications = getOption('contactus.notifications.email.send') %}
 {% set email = getOption('contactus.notifications.email') %}
-{% component 'semantic~tabs.vertical.content' %}
-    <div class="mt-8">            
-        <form class="ui equal width form" id="notifications_settings_form">  
-            <div class="ui segment">
-                <div class="field">                     
-                    <div class="ui checkbox" id="send_email_notifications">
-                        <input type="checkbox" name="send_email_notifications" id="send_email_notifications_checkbox" tabindex="0" {{ send_email_notifications|ifthen(true,'checked') }}>
-                        <label>{{ labels.fields.email }}</label>
-                    </div>
-                </div>
-                <div class="field {{ send_email_notifications|ifthen(false,'disabled') }}" id="email_field">
-                    <label>{{ labels.email }}</label>                           
-                    <input type="text" name="notification_email" id="notification_email" tabindex="0" value="{{ email }}">                             
-                </div>
+{% component 'system:admin.panel' %}
+    <div class="mt-4">            
+        <form 
+            class="form" 
+            id="notifications_settings_form">            
+            <div class="{{ theme.form.field }}">                                     
+                <input 
+                    type="checkbox" 
+                    name="send_email_notifications" 
+                    id="send_email_notifications_checkbox" 
+                    tabindex="0" 
+                    {{ send_email_notifications|ifthen(true,'checked') }}>
+                <label class="{{ theme.form.checkbox_label }}">
+                    {{ labels.fields.email }}
+                </label>               
             </div>
-            <div class="ui horizontal divider"></div>
-            <button class="ui button green submit-button">{{ buttons.save }}</button>
-            <div class="ui horizontal divider"></div>
-            <div class="ui error message errors hidden"></div>
+            <div 
+                class="{{ theme.form.field }} {{ send_email_notifications|ifthen(false,'disabled') }}" 
+                id="email_field">                                       
+                <input 
+                    class="{{ theme.form.checkbox }}"
+                    type="text" 
+                    name="notification_email" 
+                    id="notification_email" 
+                    tabindex="0" 
+                    value="{{ email }}">   
+                <label class="{{ theme.form.checkbox_label }}">
+                    {{ labels.email }}
+                </label>                            
+            </div>             
+            {{ component('system:form.footer') }}            
         </form>
     </div>
 {% endcomponent %}

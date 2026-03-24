@@ -22,7 +22,3 @@ function ContactUsControlPanel() {
 }
 
 var contactUsAdmin = new ContactUsControlPanel();
-
-arikaim.component.onLoaded(function() {
-    arikaim.ui.tab(); 
-});

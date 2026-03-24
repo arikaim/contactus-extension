@@ -1,13 +1,23 @@
-{% set items = [ 
-    { title: labels.form, component: 'contactus::admin.settings.form', icon: 'table', active: true },
-    { title: labels.notifications, component: 'contactus::admin.settings.notifications', icon: 'envelope' },
-    
-] %}
-
-{{  component('semantic~tabs.vertical',{ 
-        items: items, 
-        menu: { id: 'settings_menu' }, 
-        item_class: 'settings-tab-item',
-        content: { id: 'settings_tab', component: 'contactus::admin.settings.form' } 
+{{  component('system:admin.tabs.vertical',{ 
+        items: [ 
+            { 
+                title: labels.form, 
+                component: 'contactus::admin.settings.form', 
+                svg_icon: 'icons~list',
+                active: true 
+            },
+            { 
+                title: labels.notifications, 
+                component: 'contactus::admin.settings.notifications', 
+                svg_icon: 'icons~mail' 
+            },    
+        ], 
+        menu: { 
+            id: 'settings_menu' 
+        },       
+        content: { 
+            id: 'settings_tab', 
+            component: 'contactus::admin.settings.form' 
+        } 
     })
 }}

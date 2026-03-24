@@ -1,8 +1,6 @@
 {   
-    "title": {
-        "content": "Email",
-        "icon": "envelope"
-    },
+    "title": "Email",
+    "icon": "icons~mail",
     "labels": {        
         "email": "Email",
         "fields": {

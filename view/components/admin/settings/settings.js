@@ -8,10 +8,6 @@
 
 function ContactUsSettings() {    
 
-    this.init = function() {      
-       arikaim.ui.tab('.settings-tab-item','settings_tab')
-    };
-
     this.getSettings = function(form_id) {
         return {
             name: {
@@ -55,7 +51,3 @@ function ContactUsSettings() {
 }
 
 var contactUsSettings = new ContactUsSettings();
-
-arikaim.component.onLoaded(function() {
-    contactUsSettings.init();
-});

@@ -14,14 +14,17 @@
     <td colspan="8">..</td>
 </tr>
 {% endif %}
+
 {% for item in paginator.getItems() %}
     {% set read_style = (item.read != 1) ? 'font-bold' : ''%}
     <tr id="{{ item.uuid }}" class="row {{ read_style }}">        
-        <td class="right aligned">
-            <input type="checkbox" class="selected-row" name="selected[]" value="{{ item.uuid }}">
+        <td class="">
+            <input type="checkbox" class="selected-row checkbox" name="selected[]" value="{{ item.uuid }}">
         </td>
         <td>
-            <button class="ui basic mini button icon delete-button" uuid="{{ item.uuid }}">
+            <button 
+                class="{{ theme.buttons.menu }} delete-button" 
+                uuid="{{ item.uuid }}">
                 <i class="icon trash orange"></i>
             </button>
         </td>

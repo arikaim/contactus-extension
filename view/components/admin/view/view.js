@@ -11,9 +11,9 @@ function ContactUsView() {
  
     this.init = function() {           
         this.loadMessages('contactus::admin');
-        paginator.init('contactus_rows',"contactus::admin.view.rows",'contactus');         
+       
         
-        $('.actions').dropdown({});       
+        //$('.actions').dropdown({});       
          
         search.init({ 
             id: 'contactus_rows',
