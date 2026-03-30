@@ -11,7 +11,7 @@
 
 {% if paginator.getItems()|length == 0 %}
 <tr>
-    <td colspan="8">..</td>
+    <td colspan="5">..</td>
 </tr>
 {% endif %}
 
@@ -19,20 +19,32 @@
     {% set read_style = (item.read != 1) ? 'font-bold' : ''%}
     <tr id="{{ item.uuid }}" class="row {{ read_style }}">        
         <td class="">
-            <input type="checkbox" class="selected-row checkbox" name="selected[]" value="{{ item.uuid }}">
+            <input 
+                type="checkbox" 
+                class="selected-row checkbox checkbox-xs" 
+                name="selected[]" 
+                value="{{ item.uuid }}">
         </td>
         <td>
             <button 
                 class="{{ theme.buttons.menu }} delete-button" 
                 uuid="{{ item.uuid }}">
-                <i class="icon trash orange"></i>
+                {{ component('icons~trash',theme.icons.delete,'svg') }}              
+            </button>
+            <button 
+                class="{{ theme.buttons.menu }} message-action" 
+                uuid="{{ item.uuid }}">
+                {{ component('icons~eye',theme.icons.menu,'svg') }}              
             </button>
         </td>
-        <td class="view-message">{{ item.date_created|dateTimeFormat }}</td>
-        <td class="view-message">{{ item.subject }}</td>
-        <td class="view-message">{{ item.message|striptags()|slice(0,20) }}</td>
-        <td class="view-message">{{ item.name }}</td>
-        <td class="view-message">{{ item.email }}</td>
-        <td >{{ item.phone }}</td>              
+        <td>
+            {{ item.date_created|dateTimeFormat }}
+        </td>
+        <td>
+            {{ item.subject }}
+        </td>
+        <td>
+            {{ item.message|striptags()|slice(0,20) }}
+        </td>                 
     </tr>
 {% endfor %}   

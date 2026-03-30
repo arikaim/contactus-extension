@@ -3,20 +3,17 @@
         {{ component("system:admin.search.form",{ namespace: 'contactus' }) }}
     </div>  
 </div>
-<div class="mt-4 {{ tmeme.panel }}">
+<div class="mt-4 {{ theme.panel }}">
     <table class="{{ theme.table.default }}">
         <thead>
             <tr>
-                <th class="">
-                    {{ component('contactus::admin.view.actions') }}
+                <th class="w-12">
+                    {# component('contactus::admin.view.actions') #}
                 </th>
-                <th class="">{{ labels.actions }}</th>
-                <th class="">{{ labels.date }}</th>  
+                <th class="w-32">{{ labels.actions }}</th>
+                <th class="w-64">{{ labels.date }}</th>  
                 <th>{{ labels.subject }}</th>           
-                <th>{{ labels.message }}</th>
-                <th>{{ labels.name }}</th>
-                <th>{{ labels.email }}</th>
-                <th>{{ labels.phone }}</th>                            
+                <th>{{ labels.message }}</th>                               
             </tr>
         </thead>
         <tbody 
@@ -25,7 +22,7 @@
         </tbody>
     </table>
     <div class="mt-4 ml-2" id="paginator"> 
-         {{  component("system:admin.paginator",{ 
+        {{  component("system:admin.paginator",{ 
                 id: 'messages_paginator',
                 namespace: 'contactus',
                 rows_selector: 'contactus_rows',

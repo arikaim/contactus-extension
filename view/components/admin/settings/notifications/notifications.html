@@ -1,6 +1,7 @@
 {% set send_email_notifications = getOption('contactus.notifications.email.send') %}
 {% set email = getOption('contactus.notifications.email') %}
 {% component 'system:admin.panel' %}
+    {% set size = 'w-1/3' %}
     <div class="mt-4">            
         <form 
             class="form" 
@@ -19,16 +20,17 @@
             <div 
                 class="{{ theme.form.field }} {{ send_email_notifications|ifthen(false,'disabled') }}" 
                 id="email_field">                                       
+                <label class="{{ theme.form.label }}">
+                    {{ labels.email }}
+                </label> 
                 <input 
-                    class="{{ theme.form.checkbox }}"
+                    class="{{ theme.form.input }}"
                     type="text" 
                     name="notification_email" 
                     id="notification_email" 
                     tabindex="0" 
                     value="{{ email }}">   
-                <label class="{{ theme.form.checkbox_label }}">
-                    {{ labels.email }}
-                </label>                            
+                                         
             </div>             
             {{ component('system:form.footer') }}            
         </form>
