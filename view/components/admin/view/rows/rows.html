@@ -7,17 +7,18 @@
 
 {% set list = applySearch(list,'contactus') %}
 {% set list = list.orderBy('date_created','desc') %}
-{% set paginator = paginate(list,'contactus')  %}
+{% set items = paginate(list,'contactus').getItems()  %}
 
-{% if paginator.getItems()|length == 0 %}
+{% if items|length == 0 %}
 <tr>
     <td colspan="5">..</td>
 </tr>
 {% endif %}
 
-{% for item in paginator.getItems() %}
-    {% set read_style = (item.read != 1) ? 'font-bold' : ''%}
-    <tr id="{{ item.uuid }}" class="row {{ read_style }}">        
+{% for item in items %}  
+    <tr 
+        id="{{ item.uuid }}" 
+        class="row {{ (item.read != 1) ? 'font-bold' : '' }}">        
         <td class="">
             <input 
                 type="checkbox" 
@@ -31,8 +32,8 @@
                 uuid="{{ item.uuid }}">
                 {{ component('icons~trash',theme.icons.delete,'svg') }}              
             </button>
-            <button 
-                class="{{ theme.buttons.menu }} message-action" 
+            <button                 
+                class="{{ theme.buttons.menu }} view-message" 
                 uuid="{{ item.uuid }}">
                 {{ component('icons~eye',theme.icons.menu,'svg') }}              
             </button>

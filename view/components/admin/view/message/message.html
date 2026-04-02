@@ -1,33 +1,58 @@
 {% set message = createModel('ContactUs','contactus').findById(uuid) %}
-<div class="ui segment">  
-    {% if message.subject is not empty %}  
-        <div class="ui small dividing header">              
-            {{ message.subject }}               
+{% component 'system:admin.panel' %}
+    <div class="mt-4">  
+        <label>
+            {{ labels.date }}
+        </label>
+        <div class="font-bold">              
+            {{ message.date_created|dateFormat }}               
         </div>  
-    {% endif %}          
-    <div class="content">       
-        <p class="ml-5 text-xl text-gray-700">{{ message.message|decode }}</p>
-    </div>               
-</div>
-<div class="ui form pt-4 pb-4">
-    {% if message.name is not empty %}
-        <div class="field">
-            <label>{{ labels.name }}</label>
-            <p class="ml-5 text-xl text-gray-700">{{ message.name }}</p>
-        </div>  
-    {% endif %}  
-    {% if message.email is not empty %}
-        <div class="field">
-            <label>{{ labels.email }}</label>
-            <p class="ml-5 text-xl text-gray-700">
-                <a href="mailto:{{ message.email }}">{{ message.email }}</a>
+        {% if message.subject is not empty %}  
+            <label class="mt-4">
+                {{ labels.subject }}
+            </label>
+            <div class="font-bold">              
+                {{ message.subject }}               
+            </div>  
+        {% endif %}          
+        <div class="mt-4">       
+            <p class="ml-5 text-xl text-gray-800">
+                {{ message.message|decode }}
             </p>
-        </div>  
-    {% endif %}  
-    {% if message.phone is not empty %}
-        <div class="field">
-            <label>{{ labels.phone }}</label>
-            <p class="ml-5 text-xl text-gray-700">{{ message.phone }}</p>
-        </div> 
-    {% endif %}  
-</div>    
+        </div>               
+    </div>
+    <div class="form mt-4">
+        {% if message.name is not empty %}
+            <div class="{{ theme.form.field }}">
+                <label class="{{ theme.form.label }}">
+                    {{ labels.name }}
+                </label>
+                <p class="ml-5 text-xl text-gray-700">
+                    {{ message.name }}
+                </p>
+            </div>  
+        {% endif %}  
+        {% if message.email is not empty %}
+            <div class="{{ theme.form.field }}">
+                <label class="{{ theme.form.label }}">
+                    {{ labels.email }}
+                </label>
+                <p class="text-xl text-gray-700">
+                    <a href="mailto:{{ message.email }}">
+                        {{ message.email }}
+                    </a>
+                </p>
+            </div>  
+        {% endif %}  
+        {% if message.phone is not empty %}
+            <div class="{{ theme.form.field }}">
+                <label class="{{ theme.form.label }}">
+                    {{ labels.phone }}
+                </label>
+                <p class="text-xl text-gray-700">
+                    {{ message.phone }}
+                </p>
+            </div> 
+        {% endif %}  
+    </div>    
+{% endcomponent %}

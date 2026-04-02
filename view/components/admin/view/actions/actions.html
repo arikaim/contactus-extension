@@ -1,13 +1,31 @@
-<div class="ui left pointing dropdown icon actions" id="actins_dropdown">
-    <i class="ellipsis blue vertical icon"></i>
-    <div class="menu">            
-        <div class="item" id="select_all" data-value="select">
-            <i class="square outline icon" id="all_icon"></i>
-            {{ labels.all }}
-        </div>
-        <div class="item" id="delete_selected">
-            <i class="trash orange icon"></i>
-            {{ labels.delete }}
-        </div>
+<div 
+    class="hs-dropdown dropdown-end" 
+    id="actins_dropdown">
+    <button 
+        type="button" 
+        class="hs-dropdown-toggle btn btn-sm btn-text btn-square" 
+        aria-haspopup="menu" 
+        aria-expanded="false" 
+        aria-label="Actions">
+        {{ component('icons~list',theme.icons.menu,'svg') }}  
+    </button>  
+    <div 
+        class="z-20  hs-dropdown-menu bg-white transition-[opacity,margin] opacity-100 duration hs-dropdown-open:opacity-100 hidden min-w-60 rounded-lg shadow-md mt-2" 
+        role="menu" 
+        aria-orientation="vertical" 
+        aria-labelledby="dropdown-actions"> 
+        <div class="p-4">
+            <div 
+                class="dropdown-item normal-case link" 
+                id="select_all" 
+                data-value="select">         
+                {{ labels.all }}
+            </div>
+            <div     
+                class="dropdown-item action-item normal-case link" 
+                id="delete_selected">          
+                {{ labels.delete }}
+            </div>
+        </div>       
     </div>
 </div>

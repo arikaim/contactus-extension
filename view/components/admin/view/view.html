@@ -3,31 +3,36 @@
         {{ component("system:admin.search.form",{ namespace: 'contactus' }) }}
     </div>  
 </div>
-<div class="mt-4 {{ theme.panel }}">
-    <table class="{{ theme.table.default }}">
-        <thead>
-            <tr>
-                <th class="w-12">
-                    {# component('contactus::admin.view.actions') #}
-                </th>
-                <th class="w-32">{{ labels.actions }}</th>
-                <th class="w-64">{{ labels.date }}</th>  
-                <th>{{ labels.subject }}</th>           
-                <th>{{ labels.message }}</th>                               
-            </tr>
-        </thead>
-        <tbody 
-            id="contactus_rows">
-            {{ component('contactus::admin.view.rows') }}
-        </tbody>
-    </table>
-    <div class="mt-4 ml-2" id="paginator"> 
-        {{  component("system:admin.paginator",{ 
-                id: 'messages_paginator',
-                namespace: 'contactus',
-                rows_selector: 'contactus_rows',
-                component:"contactus::admin.view.rows" 
-            })  
-        }}                     
+<div class="mt-4 flex flex-row items-start flex-grow">    
+    <div class="w-1/2 ml-4 {{ theme.panel }}">
+        <table class="{{ theme.table.default }}">
+            <thead>
+                <tr>
+                    <th class="w-12">
+                        {{ component('contactus::admin.view.actions') }}
+                    </th>
+                    <th class="w-32">{{ labels.actions }}</th>
+                    <th class="w-64">{{ labels.date }}</th>  
+                    <th>{{ labels.subject }}</th>           
+                    <th>{{ labels.message }}</th>                               
+                </tr>
+            </thead>
+            <tbody 
+                id="contactus_rows">
+                {{ component('contactus::admin.view.rows') }}
+            </tbody>
+        </table>
+        <div class="mt-4 ml-2" id="paginator"> 
+            {{  component("system:admin.paginator",{ 
+                    id: 'messages_paginator',
+                    namespace: 'contactus',
+                    rows_selector: 'contactus_rows',
+                    component:"contactus::admin.view.rows" 
+                })  
+            }}                     
+        </div>
+    </div>
+    <div class="w-1/2 ml-4" 
+        id="message_details">
     </div>
 </div>

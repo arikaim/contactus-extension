@@ -1,6 +1,9 @@
 {
+    "title": "Message",
+    "icon": "icons~mail",
     "labels": {
-        "name": "Name",     
+        "name": "Name",  
+        "date": "Date",     
         "phone": "Phone",      
         "email": "Email",   
         "subject": "Subject",     
